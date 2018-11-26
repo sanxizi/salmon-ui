@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<title>Salmon-OS</title>
+	<link href="https://cdn.staticfile.org/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<link rel="stylesheet" type="text/css" href="css/os.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/os.js">
+
+</script>
+
+<body id="body">
+
+<!-- <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541491588651&di=32e69d8c7c6f13262eddae6035d7a2c3&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F4%2F586b090b7f42b.jpg" style="width: 100%;height:100%;position: fixed;top:0;left: 0;">
+
+-->
+
+<div id="content">
+
+
+	<div class="os-menu" style="">
+
+
+		<span class="os-menu-ico weixin os-menu-ico-drag" data="weixin" draggable="true">
+			<p><img src="http://pic.bmoon.net/logo/weixin.png" width="50" height="50"></p>
+			<h6>微 信</h6>
+		</span>
+
+		<span class="os-menu-ico  os-menu-ico-drag weibo" data="weibo"  draggable="true">
+			<p><img src="http://pic.bmoon.net/logo/weibo.png" width="50" height="50"></p>
+			<h6>微 博</h6>
+		</span>
+
+		<span class="os-menu-ico os-menu-ico-drag qq" data="qq"  draggable="true">
+			<p><img src="http://pic.bmoon.net/logo/qq.png" width="50" height="50"></p>
+			<h6>Q Q</h6>
+		</span>
+
+		<span class="os-menu-ico os-menu-ico-drag" style="" draggable="true">
+			<p><i class="fa fa-user-circle-o fa-3x"></i></p>
+			<h6>用户管理</h6>
+		</span>
+
+		<span class="os-menu-ico os-menu-ico-drag message" style="" draggable="true" >
+			<p><i class="fa fa-envelope-o fa-3x"></i></p>
+			<h6>消息盒子</h6>
+		</span>
+
+		<span class="os-menu-ico os-menu-ico-drag cog" data="cog"  draggable="true">
+			<p><p><i class="fa fa-cog fa-3x"></i></p></p>
+			<h6>设置</h6>
+		</span>
+
+		<button id="click" onclick="stip(0,'error',0,-1,'large')"> click</button>
+
+
+
+	</div>
+
+
+</div>
+
+
+
+<!-- 弹出窗体 -->
+
+<div id="" class="weibo-iframe os-window"  >
+	<p  class="nomargin bg-white-op os-iframe-title">
+		<img src="http://pic.bmoon.net/logo/weibo.png" class="weibo-title" width="30" height="30">
+		<span >微博</span>
+
+		<span class="right lg-margin-l">
+			<i class="fa fa-minus min-window" data-min="weibo" aria-hidden="true"></i>
+			<i class="fa fa-television lg-margin-l" aria-hidden="true"></i>
+			<i class="fa fa-close close-window" data-close="weibo" aria-hidden="true"></i>
+		</span>
+	</p>
+	<iframe  src="https://weibo.com/" sandbox="allow-scripts allow-same-origin allow-popups allow-same-origin allow-top-navigation" class="iframe" scrolling="auto" seamless>
+
+
+	</iframe>
+
+</div>
+
+<div class="qq-iframe " style="">
+	<p  class="nomargin bg-white-op os-iframe-title">
+		<i class="fa fa-qq" aria-hidden="true" > </i>  Smart QQ
+		<span class="right lg-margin-l">
+			<i class="fa fa-minus min-window" data-min="qq" aria-hidden="true"></i>
+			<i class="fa fa-television lg-margin-l" aria-hidden="true"></i>
+			<i class="fa fa-close close-window" data-close="qq" aria-hidden="true"></i>
+		</span>
+	</p>
+	<iframe class="qq-frame-src" name="win-560686314" src="http://web2.qq.com"  >
+	</iframe>
+
+</div>
+
+
+<!-- 弹出窗体 设置 -->
+
+<div  class="os-window cog-iframe"  >
+	<p  class="nomargin bg-white-op os-iframe-title">
+		<i class="fa fa-cog" aria-hidden="true" > </i>  系统设置
+
+		<span class="right lg-margin-l">
+			<i class="fa fa-minus min-window" data-min="cog" aria-hidden="true"></i>
+			<i class="fa fa-television lg-margin-l" aria-hidden="true"></i>
+			<i class="fa fa-close close-window" data-close="cog" aria-hidden="true"></i>
+		</span>
+	</p>
+	<div class="iframe bg-white-op row" style="">
+		<div class="col-xs-6 col-sm-3 col-md-2  nopadding" >
+			<ul style="" class="os-control-menu-list">
+				<li><i class="fa fa-android lg-margin-l"> </i>  应用管理</li>
+				<li><i class="fa fa-photo lg-margin-l"> </i>  壁纸设置</li>
+				<li><i class="fa fa-envelope-o lg-margin-l"> </i>  邮箱</li>
+				<li><i class="fa fa-pencil lg-margin-l"> </i>  便笺</li>
+				<li><i class="fa fa-camera-retro lg-margin-l"> </i>  相册</li>
+				<li><i class="fa fa-circle-thin lg-margin-l"> </i>  关于</li>
+			</ul>
+
+		</div>
+
+		<div class=" col-xs-6 col-md-8  nopadding" style="height:100%">
+			<iframe src="about.html" frameborder="0" scrollbar="auto" class="embed-responsive-item" style="width: 100%;height:100%;" >
+
+
+
+
+			</iframe>
+		</div>
+
+	</div>
+
+</div>
+<div class="os-right-control col-md-4 col-xs-12 col-sm-6 col-lg-3">
+
+	<div class="os-control-center">
+		<h3><small>没有新通知..</small></h3>
+		<div class="os-control-notice">
+			fdsdsfd<br>fdsdsfd<br>fdsdsfd<br>
+		</div>
+
+	</div>
+
+	<div class="os-control-bottom rows">
+		<small class="right" style="margin-right: 10px;">更多设置</small>
+		<br>
+
+		<div class="os-control-tag">
+			<p class="os-salmon-cog"><i class="fa fa-cogs fa-2x"></i><p>
+				<p>所有设置</p>
+			</div>
+
+			<div class="os-control-tag">
+				<p><i class="fa fa-edit fa-2x"></i><p>
+					<p>便笺</p>
+				</div>
+
+				<div class="os-control-tag">
+					<p><i class="fa fa-picture-o fa-2x"></i><p>
+						<p>相册</p>
+					</div>
+
+					<div class="os-control-tag">
+						<p><i class="fa fa-envelope fa-2x"></i><p>
+							<p>邮件</p>
+						</div>
+
+						<div class="os-control-tag">
+							<p><i class="fa fa-wrench fa-2x"></i><p>
+								<p>个性化</p>
+							</div>
+
+							<div class="os-control-tag">
+								<p><i class="fa fa-circle-thin fa-2x"></i><p>
+									<p>系统信息</p>
+								</div>
+
+							</div>
+
+						</div>
+
+
+						<div class="os-start-page">
+							<div class="os-start-page-list">
+								<div class="os-footer-ico"><i class="fa fa-wifi fa-lg" aria-hidden="true"></i></div><br>
+								<div class="os-footer-ico "><i class="fa fa-laptop fa-lg" aria-hidden="true"></i></div><br>
+
+								<div class="os-footer-ico "><i class="fa fa-search fa-lg" aria-hidden="true"></i></div><br>
+
+								<div class="os-start-page-list-bottom">
+									<div class="os-footer-ico"><i class="fa fa-user-circle fa-lg" aria-hidden="true"></i></div><br>
+									<div class="os-footer-ico "><i class="fa fa-cog fa-lg" aria-hidden="true"></i></div><br>
+
+									<div class="os-footer-ico "><i class="fa fa-circle-o-notch fa-lg" aria-hidden="true"></i></div><br>
+
+								</div>
+
+
+							</div>
+							<div class="os-start-page-content">
+
+								<span class="os-menu-ico text-center bg-black-op " >
+									<p class="min-margin-t"><img src="http://pic.bmoon.net/logo/weixin.png"  width="50" height="50"></p>
+									<h6 >微 信</h6>
+
+								</span>
+
+								<span class="os-menu-ico text-center bg-black-op " >
+									<p class="min-margin-t"><img src="http://pic.bmoon.net/logo/weixin.png"  width="50" height="50"></p>
+									<h6 >微 信</h6>
+
+								</span>
+
+								<span class="os-menu-ico text-center bg-black-op ">
+									<p class="min-margin-t"><img src="http://pic.bmoon.net/logo/weixin.png"  width="50" height="50"></p>
+									<h6 >微 信</h6>
+
+								</span>
+
+								<span class="os-menu-ico text-center bg-black-op " >
+									<p class="min-margin-t"><img src="http://pic.bmoon.net/logo/weixin.png" width="50" height="50"></p>
+									<h6 >微 信</h6>
+
+								</span>
+
+
+
+
+							</div>
+
+
+
+
+
+						</div>
+
+
+
+						<footer class="os-footer">
+
+							<div class="left" style="flex-grow: 0;">
+								<div class="os-footer-ico left os-start-btn"><i class="fa fa-laptop fa-lg" aria-hidden="true"></i></div>
+
+								<div class="os-footer-ico left"><i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i></div>
+							</div>							
+
+							<div class="os-footer-min-ico" style="">
+
+							</div> 
+
+							<div class="right" style="flex-grow: 0;">
+								<div class="os-footer-ico right  os-control-btn"><i class="fa fa-circle-thin fa-lg" aria-hidden="true"></i></div>
+
+								<div class="os-footer-ico right" style="font-size: 12px;">12:55</div>
+
+								<div class="os-footer-ico right"><i class="fa fa-bell-o fa-min" aria-hidden="true"></i></div>
+
+								<div class="os-footer-ico right"><i class="fa fa-wifi" aria-hidden="true"></i></div>
+
+
+							</div>
+
+
+						</footer>
+
+
+
+						<ul class="os-menu-list">
+
+							<li><i class="fa fa-eye margin-l"></i> 查看</li>
+							<li><a href="index.html" class="show"><i class="fa fa-refresh margin-l"></i> 重新载入</a></li>
+							<li><i class="fa fa-eraser margin-l"></i> 清除缓存</li>
+							<li><i class="fa fa-android margin-l"></i> 添加程序</li>
+							<li><i class="fa fa-photo margin-l"></i> 更换壁纸</li>
+							<li onclick="fullscreen()"><i class="fa fa-window-maximize margin-l"></i> 全屏模式</li>
+							<li onclick="exitFullscreen()"><i class="fa fa-window-restore margin-l"></i> 退出全屏</li>
+						</ul>
+
+
+
+					</div>
+
+				</body>
+				</html>
