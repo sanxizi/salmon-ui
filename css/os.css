@@ -101,13 +101,14 @@
 	#content{
 		width: 100%;
 		height: 100%;
-		 background: url("https://newevolutiondesigns.com/images/freebies/orange-wallpaper-7.jpg") no-repeat;
+		 background:  url("https://newevolutiondesigns.com/images/freebies/orange-wallpaper-7.jpg") no-repeat ;
 		background-size: cover; 
 		overflow:hidden;
 	}
 	/*ico菜单*/
 	.os-menu{
-		width: 100%;height: 100%;margin:-45px 0;text-align: center;padding-top: 45px;
+		width: 100%;margin:-45px 0;padding: 45px 10px 0;position: relative;z-index: 10000;height: 100%;overflow: auto;
+		background:;
 	}
 	.os-menu-list{
 		width: 300px;
@@ -118,7 +119,7 @@
 		box-shadow: 0 2px 2px #cccccc;
 		display: none;
 		position: fixed;
-		z-index: 10;
+		z-index: 10000;
 	}
 	.os-menu-list >li{
 		height: 30px;
@@ -136,11 +137,12 @@
 		position: relative;
 		z-index: 10;
 		width: 80px;
-		height: 80px;
-		display: inline-block;padding: 5px;
+		min-height: 60px;
+		display: block;padding: 10px 5px 0px;
 		color: #ffffff;
 		text-shadow: 0 0 2px #666;
-		margin:10px;
+		text-align: center;
+
 	}
 	.os-menu-ico:hover{
 		background: rgba(250,250,250,0.5);
@@ -156,7 +158,7 @@
 		height: 100%;
 		margin-top: -40px;
 		position: absolute;
-		z-index: 1000;
+		z-index: 10000;
 		background: rgba(10,10,10,.4); 
 		top:0;
 		right:0;
@@ -203,7 +205,7 @@
 /* 设置弹出框 */
 .os-window {
 	position: relative;
-	z-index: 100;
+	z-index: 10000;
 }
 .os-control-menu-list{
 	list-style: none;
@@ -315,7 +317,7 @@
 	/* 开始页面 */
 	.os-start-page{
 		position: fixed;
-		z-index: 100;
+		z-index: 10000;
 		width: 100%;
 		height: 100%;
 		margin-top: -40px;

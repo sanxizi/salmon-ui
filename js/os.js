@@ -6,7 +6,7 @@ function loadingChange()
 
 	if(document.readyState == "complete"){ 
 			//当页面加载状态为完全结束时渐隐进入 
-			$("body").fadeIn(300);
+			$("body").fadeIn(10);
 
 		}else{
 			$("body").fadeOut(0);
@@ -67,7 +67,78 @@ function getMousePos(event) {
 	return {'x':e.clientX,'y':clientY}
 }
 
+//拖拽函数
+function drag(obj) {
 
+	obj.onmousedown = function(ev) {
+		//alert(ev+"-88");
+		var ev = ev || event;
+
+		var disX = ev.clientX - this.offsetLeft;
+		var disY = ev.clientY - this.offsetTop;
+
+		if ( obj.setCapture ) {
+			obj.setCapture();
+		}
+
+		document.onmousemove = function(ev) {
+			var ev = ev || event;
+
+			obj.style.left = ev.clientX - disX + 'px';
+			obj.style.top = ev.clientY - disY + 'px';
+			console.log(obj.style.left+"---"+obj.style.top);
+			//console.log();
+
+			//$("#text").text("left:"+obj.style.left+" -----------  top:"+obj.style.top);
+		}
+
+		document.onmouseup = function() {
+			document.onmousemove = document.onmouseup = null;
+                //释放全局捕获 releaseCapture();
+                if ( obj.releaseCapture ) {
+                	obj.releaseCapture();
+                }
+            }
+
+            return false;
+
+        }
+
+    }
+
+  function drags(obj){
+  	$(obj).mousedown(function(e){
+  		alet("999");
+    
+	    var positionDiv = $(this).offset();
+	    var distenceX = e.pageX - positionDiv.left;
+	    var distenceY = e.pageY - positionDiv.top;
+	    
+	    $(document).mousemove(function(e){
+	      var x = e.pageX - distenceX;
+	      var y = e.pageY - distenceY;
+	      if(x<0){
+	        x=0;
+	      }else if(x>$(document).width()-$(obj).outerWidth(true)){
+	        x = $(document).width()-$(obj).outerWidth(true);
+	      }
+	      if(y<0){
+	        y=0;
+	      }else if(y>$(document).height()-$(obj).outerHeight(true)){
+	        y = $(document).height()-$(obj).outerHeight(true);
+	      }
+	      $(obj).css({
+	        'left':x+'px',
+	        'top':y+'px'
+	      });
+	    });
+	    $(document).mouseup(function(){
+	      $(document).off('mousemove');
+	    });
+	  });
+
+
+  }
 //弹出框定义函数
 function stip(title,content,footer,time,large){//title content footer time
 	if (large == "large") {
@@ -198,6 +269,9 @@ function closeWindow(obj){
 
 
 $(function(){
+
+
+
 	$("#test").load('https://www.yuque.com');
 	//自定义弹出框初始化
 	$("body").html($("body").html()+"<div class='stip'></div>");
@@ -292,29 +366,36 @@ $(function(){
 	var qqNum=0;
 	$(".qq").click(function(){
 		if (($(".qq-iframe").hasClass("fadeOutUp")) || (qqNum==0) ) {
-			document.getElementsByClassName('qq-frame-src')[0].src=document.getElementsByClassName('qq-frame-src')[0].src;
+			document.getElementsByClassName('qq-frame-src')[0].src="http://web2.qq.com";
 			$(".qq-iframe").removeClass("fadeOutUp");
 			qqNum++;
 		}else{qqNum=1;}			
-			$(".os-footer-min-ico").find(".footer-bar-qq").remove();
-			sIn($(".qq-iframe"),"pulse","fadeOutDown",800);
+		$(".os-footer-min-ico").find(".footer-bar-qq").remove();
+		sIn($(".qq-iframe"),"pulse","fadeOutDown",800);
 		
 	})
 
-	$(".qq-iframe").ondrag = function(){
-		alert("666");
-	}
+	var qq=document.getElementById("qq");
+	var weibo=document.getElementById("weibo");
+	drag(qq);
+	drag(weibo);
+
+	alert($(".os-menu-ico").eq(1).height() +Math.floor(1.22)+ " ------- " +$(window).height() + " ------- " +Math.floor(($(window).height()-50)/110));
+
+	//var 
 
 	/*微博打开*/
+	var windowNum=0;
 	$(".weibo").click(function(){
-		if ($(".weibo-iframe").hasClass("fadeOutUp")) {
-			//document.getElementById('myframe').src="http://weibo.com";
+		if (($(".weibo-iframe").hasClass("fadeOutUp")) || (windowNum==0)) {
+			document.getElementById('window-iframe').src="https://weibo.com";
 			$(".weibo-iframe").removeClass("fadeOutUp");
-		}else{}
+			windowNum++;
+		}else{windowNum=1;}
 		$(".os-footer-min-ico").find(".footer-bar-weibo").remove();
 
 
-			sIn($(".weibo-iframe"),"pulse","fadeOutDown",800);
+		sIn($(".weibo-iframe"),"pulse","fadeOutDown",800);
 
 		
 	})
@@ -332,23 +413,6 @@ $(function(){
 
 
 
-	for (var i = 0; i < $(".os-menu-ico-drag").length; i++) {
-		(function(i){
-			$(".os-menu-ico-drag").eq(i).ondragstart = function(event){
-	               ev.dataTransfer.setData("Text",$(".os-menu-ico-drag").eq(i));
-	         }
-
-	         $(".os-menu-ico-drag").eq(i).ondragstart = function(event){
-	              /* $("#os-window").fadeOut(500);
-					$("#os-window").addClass("animated fadeOutDown");*/
-	         }
-
-
-	         $(".os-menu-ico-drag").eq(i).ondragend = function(event){
-	               alert("888");
-	         }
-         }(i));
-	}
 	
 
 
