@@ -243,26 +243,22 @@ function stip(title,content,footer,time,large){//title content footer time
 }
 
 function minWindow(obj){
-	//alert($(".os-footer-min-ico").find("img").hasClass("footer-bar-"+$(obj).attr("data")));
 	if ($(".os-footer-min-ico").find("img").hasClass("footer-bar-"+$(obj).attr("data"))) {
 
 		$(".os-footer-min-ico").find(".footer-bar-"+$(obj).attr("data")).remove();
 		
 	}else{
 
-		sOut($("."+$(obj).attr("data")+"-iframe"),"pulse","fadeOutDown",500);
+		sOut($(".iframe-"+$(obj).attr("data")),"pulse","fadeOutDown",500);
 		$(".os-footer-min-ico").html($(".os-footer-min-ico").html()+"<img class=' "+$(obj).attr("data")+"  footer-bar-ico footer-bar-"+$(obj).attr("data")+"' src=' "+$(obj).find("img").attr("src")+" '/>");
-		
-		//alert($(".os-footer-min-ico").find("img").hasClass("footer-bar-"+$(obj).attr("data")));
-	}
 
-	//alert($(obj).find("img").attr("src"));
+	}
 	
 }
 
 function closeWindow(obj){
 
-	sOut($("."+$(obj).attr("data")+"-iframe"),"pulse","fadeOutUp",500);
+	sOut($(".iframe-"+$(obj).attr("data")),"pulse","fadeOutUp",500);
 }
 
 
@@ -345,18 +341,18 @@ $(function(){
 	//窗口关闭
 	$(".close-window").click(function(){
 		//alert($(this).attr("data-close"));
-		closeWindow("."+String($(this).attr("data-close")));
+		closeWindow("."+String($(this).parent().attr("data")));
 	})
 	//窗口最小化
 	$(".min-window").click(function(){
 		//alert($(this).attr("data-min"));
-		minWindow("."+String($(this).attr("data-min")));
+		minWindow("."+String($(this).parent().attr("data")));
 	})
 
 	/*微信打开*/
 	$(".weixin").click(function(){
-		minWindow(this);
-		document.getElementById('myframe').src="http://web2.qq.com";
+		//minWindow(this);
+		//document.getElementById('myframe').src="http://web2.qq.com";
 		window.open("https://wx.qq.com/","_blank","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no,channelmode=1,fullscreen=1, copyhistory=no, width=960, height=800,top=40,left=400");
 	})
 
@@ -365,13 +361,14 @@ $(function(){
 	/*QQ打开*/
 	var qqNum=0;
 	$(".qq").click(function(){
-		if (($(".qq-iframe").hasClass("fadeOutUp")) || (qqNum==0) ) {
+		if (($(".iframe-qq").hasClass("fadeOutUp")) || (qqNum==0) ) {
 			document.getElementsByClassName('qq-frame-src')[0].src="http://web2.qq.com";
-			$(".qq-iframe").removeClass("fadeOutUp");
+			$(".iframe-qq").removeClass("fadeOutUp");
 			qqNum++;
 		}else{qqNum=1;}			
 		$(".os-footer-min-ico").find(".footer-bar-qq").remove();
-		sIn($(".qq-iframe"),"pulse","fadeOutDown",800);
+
+		sIn($(".iframe-qq"),"pulse","fadeOutDown",800);
 		
 	})
 
@@ -380,12 +377,41 @@ $(function(){
 	drag(qq);
 	drag(weibo);
 
-	alert($(".os-menu-ico").eq(1).height() +Math.floor(1.22)+ " ------- " +$(window).height() + " ------- " +Math.floor(($(window).height()-50)/110));
+	alert($(".os-menu-ico").eq(1).height() +Math.floor(1.22)+ " ------- " +$(window).height() + " ------- " +Math.floor(($(window).height()-50)/100));
 
-	//var 
+	//单列图标数目控制
+	//var listNum = Math.floor(($(window).height()-50)/110));
+
+
+	var iframeName=["weibo","user","message"];
+
+	var iframeUrl=["https://weibo.com","user.html","message.html"];
+
+	//var iframeTitle=["微博","用户中心","信息"]
+
+	for (var i = 0; i < iframeName.length; i++) {
+		(function(i){
+		$("."+iframeName[i]).click(function(){
+			var windowNum=0;
+			if (($(".os-window").eq(0).hasClass("fadeOutUp")) || (windowNum==0)) {
+					$(".os-window").eq(0).addClass("iframe-"+iframeName[i]);
+					document.getElementById('window-iframe').src=iframeUrl[i];
+					$(".os-window").eq(0).removeClass("fadeOutUp");
+					windowNum++;
+				}else{windowNum=1;}
+
+				$(".os-footer-min-ico").find(".footer-bar-"+iframeName[i]).remove();
+				$(".os-window").eq(0).find(".iframe-title-img").attr("src",$(this).find("img").attr("src"));
+				$(".os-window").eq(0).find(".iframe-title-content").text($(this).find("b").text());
+				$(".iframeData").attr("data",iframeName[i]);
+				sIn($(".os-window").eq(0),"pulse","fadeOutDown",800);
+
+				})
+		})(i)
+	}
 
 	/*微博打开*/
-	var windowNum=0;
+/*	var windowNum=0;
 	$(".weibo").click(function(){
 		if (($(".weibo-iframe").hasClass("fadeOutUp")) || (windowNum==0)) {
 			document.getElementById('window-iframe').src="https://weibo.com";
@@ -393,23 +419,36 @@ $(function(){
 			windowNum++;
 		}else{windowNum=1;}
 		$(".os-footer-min-ico").find(".footer-bar-weibo").remove();
-
-
 		sIn($(".weibo-iframe"),"pulse","fadeOutDown",800);
-
 		
-	})
+	})*/
 
 	/*系统打开*/
-	$(".message").click(function(){
+/*	$(".message").click(function(){
 		minWindow(this);
 		
-	})
+	})*/
 
 	$(".os-salmon-cog").click(function(){
-		sIn($(".cog-iframe").eq(0),"pulse","fadeOutDown",500);
+		sIn($(".iframe-cog").eq(0),"pulse","fadeOutDown",500);
 		sOut($(".os-right-control"),"fadeInRight","fadeOutRight",1000);
 	})
+
+	$(".cog").click(function(){
+		sIn($(".iframe-cog").eq(0),"pulse","fadeOutDown",500);
+	})
+	var controlList =["app.html","picture.html","https://mail.qq.com","tag.html","photo.html","about.html"] ;
+
+	//系统设置
+	for (var i = 0; i < $(".os-control-menu-list").find("li").length; i++) {
+		(function(i){
+		$(".os-control-menu-list").find("li").eq(i).click(function(){
+			document.getElementById('os-control-iframe').src = controlList[i];
+		})
+		})(i)
+
+
+	}
 
 
 

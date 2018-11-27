@@ -138,7 +138,7 @@
 		z-index: 10;
 		width: 80px;
 		min-height: 60px;
-		display: block;padding: 10px 5px 0px;
+		display: block;padding: 10px 5px ;
 		color: #ffffff;
 		text-shadow: 0 0 2px #666;
 		text-align: center;
@@ -306,7 +306,7 @@
 .os-iframe-title{
 	height: 40px;color: #ffffff;font-size: 16px;line-height: 40px;text-indent: 5px;
 }
-.qq-iframe{
+.iframe-qq{
 	width: 450px;height:100%;
 	border:none;position: absolute;top: -40px;
 	z-index: 100;right: 50px;padding: 50px 0;display: none;transition: all 0.5s;
