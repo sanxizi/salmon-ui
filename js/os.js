@@ -377,7 +377,7 @@ $(function(){
 	drag(qq);
 	drag(weibo);
 
-	alert($(".os-menu-ico").eq(1).height() +Math.floor(1.22)+ " ------- " +$(window).height() + " ------- " +Math.floor(($(window).height()-50)/100));
+	//alert($(".os-menu-ico").eq(1).height() +Math.floor(1.22)+ " ------- " +$(window).height() + " ------- " +Math.floor(($(window).height()-50)/100));
 
 	//单列图标数目控制
 	//var listNum = Math.floor(($(window).height()-50)/110));
@@ -387,7 +387,6 @@ $(function(){
 
 	var iframeUrl=["https://weibo.com","user.html","message.html"];
 
-	//var iframeTitle=["微博","用户中心","信息"]
 
 	for (var i = 0; i < iframeName.length; i++) {
 		(function(i){
