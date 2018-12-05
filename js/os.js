@@ -139,6 +139,16 @@ function drag(obj) {
 
 
   }
+
+  //格式化时间 7 -> 07
+  
+  function addZero(num){
+  	if(num<10){
+  		return "0"+num;
+  	}else{
+  		return num;
+  	}
+  }
 //弹出框定义函数
 function stip(title,content,footer,time,large){//title content footer time
 	if (large == "large") {
@@ -265,6 +275,13 @@ function closeWindow(obj){
 
 
 $(function(){
+	//获取当前日期
+	
+	//alert(dates.getMinutes());
+	var times = setInterval(function(){
+		var dates = new Date();
+		$(".os-footer-time").html(addZero(dates.getHours())+":"+addZero(dates.getMinutes())+" "+addZero(dates.getSeconds()));
+	},1000);
 
 
 
@@ -360,7 +377,7 @@ $(function(){
 
 	/*QQ打开*/
 	var qqNum=0;
-	$(".qq").click(function(){
+	$(".qq").dblclick(function(){
 		if (($(".iframe-qq").hasClass("fadeOutUp")) || (qqNum==0) ) {
 			document.getElementsByClassName('qq-frame-src')[0].src="http://web2.qq.com";
 			$(".iframe-qq").removeClass("fadeOutUp");
@@ -390,7 +407,7 @@ $(function(){
 
 	for (var i = 0; i < iframeName.length; i++) {
 		(function(i){
-		$("."+iframeName[i]).click(function(){
+		$("."+iframeName[i]).dblclick(function(){
 			var windowNum=0;
 			if (($(".os-window").eq(0).hasClass("fadeOutUp")) || (windowNum==0)) {
 					$(".os-window").eq(0).addClass("iframe-"+iframeName[i]);
@@ -404,6 +421,7 @@ $(function(){
 				$(".os-window").eq(0).find(".iframe-title-content").text($(this).find("b").text());
 				$(".iframeData").attr("data",iframeName[i]);
 				sIn($(".os-window").eq(0),"pulse","fadeOutDown",800);
+				sOut($(".os-start-page"),"flipInX","hinge",1000);
 
 				})
 		})(i)
@@ -428,12 +446,12 @@ $(function(){
 		
 	})*/
 
-	$(".os-salmon-cog").click(function(){
+	$(".os-salmon-cog").dblclick(function(){
 		sIn($(".iframe-cog").eq(0),"pulse","fadeOutDown",500);
 		sOut($(".os-right-control"),"fadeInRight","fadeOutRight",1000);
 	})
 
-	$(".cog").click(function(){
+	$(".cog").dblclick(function(){
 		sIn($(".iframe-cog").eq(0),"pulse","fadeOutDown",500);
 	})
 	var controlList =["app.html","picture.html","https://mail.qq.com","tag.html","photo.html","about.html"] ;
